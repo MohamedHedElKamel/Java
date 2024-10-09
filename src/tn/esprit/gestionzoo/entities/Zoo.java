@@ -1,22 +1,29 @@
-import java.security.spec.RSAOtherPrimeInfo;
+package tn.esprit.gestionzoo.entities;
+
 
 public class Zoo {
 
-    public Animal[] animals;
-    public String name;
-    public String city;
-    public final int nbrCages = 25;
-    public int nbrAnimals;
+    private Animal[] animals;
+    private String name;
+    private String city;
+    private final int nbrCages = 25;
+    private int nbrAnimals;
 
     public Zoo(String city, String name) {
         animals = new Animal[nbrCages];
         this.city = city;
-        this.name = name;
+        setName(name);
         this.nbrAnimals = 0;
     }
 
     public boolean addAnimal(Animal animal) {
-        if (searchAnimal(animal) != -1) {
+
+        if (isZooFull()) {
+            System.out.println("The zoo is full. Cannot add more animals.");
+            return false;
+        }
+
+        if (searchAnimal(animal)!=-1) {
             System.out.println("This animal is already in the zoo.");
             return false;
         }
@@ -44,7 +51,7 @@ public class Zoo {
 
     public int searchAnimal(Animal animal) {
         for (int i = 0; i < nbrCages; i++) {
-            if (animals[i] != null && animals[i].name.equals(animal.name)) {
+            if (animals[i] != null && animals[i].getName().equals(animal.getName())) {
                 return i;
             }
         }
@@ -56,7 +63,7 @@ public class Zoo {
         if (index != -1) {
             animals[index] = null;
             nbrAnimals--;
-            System.out.println(animal.name + " est supprime avec succes");
+            System.out.println(animal.getName() + " est supprime avec succes");
             return true;
         }
         return false;
@@ -76,4 +83,30 @@ public class Zoo {
         }
 
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        if (name != null && !name.isEmpty()) {
+            this.name = name;
+        } else {
+            System.out.println("Error: Zoo name cannot be empty.");
+        }
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    public int getNbrAnimals() {
+        return nbrAnimals;
+    }
+
+
 }
