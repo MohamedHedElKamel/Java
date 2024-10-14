@@ -12,11 +12,4 @@ public class Terrestrial extends Animal {
 
     public String toString() {return super.toString() + ", number of legs: " + nbrLegs;}
 
-    public int getNbrLegs() {
-        return nbrLegs;
-    }
-
-    public void setNbrLegs(int nbrLegs) {
-        this.nbrLegs = nbrLegs;
-    }
 }
