@@ -1,15 +1,27 @@
 package tn.esprit.gestionzoo.main;
 
 import tn.esprit.gestionzoo.entities.*;
+import tn.esprit.gestionzoo.exceptions.InvalidAgeException;
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
 
 public class Main {
 
     public static void main(String[] args) {
+        Animal lion = null;
+        Animal tiger = null;
+        Animal chimpanzee = null;
+        Animal cheetah = null;
+        Animal tooYoung = null;
 
-        Animal lion = new Animal("Cats", "Lion", 20, true);
-        Animal tiger = new Animal("Cats", "Tiger", 15, true);
-        Animal chimpanzee = new Animal("Monkeys", "Chimpanzee", 7, true);
-        Animal cheetah = new Animal("Cats", "Cheetah", 15, true);
+        try {
+           lion = new Animal("Cats", "Lion", 20, true);
+           tiger = new Animal("Cats", "Tiger", 15, true);
+           chimpanzee = new Animal("Monkeys", "Chimpanzee", 7, true);
+           cheetah = new Animal("Cats", "Cheetah", 15, true);
+           tooYoung = new Animal("Cats", "Cheetah", -5, true);
+        } catch (InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }
 
         Zoo myzoo = new Zoo("Tunis", "Belvedere");
         Zoo smallerZoo = new Zoo("Tunis", "Smaller");
@@ -18,11 +30,15 @@ public class Main {
 
         System.out.println("\n");
 
-        System.out.println(myzoo.addAnimal(chimpanzee));
-        System.out.println(myzoo.addAnimal(lion));
-        System.out.println(myzoo.addAnimal(tiger));
-        System.out.println(myzoo.addAnimal(chimpanzee));
-        System.out.println(myzoo.addAnimal(cheetah));
+        try {
+        myzoo.addAnimal(chimpanzee);
+        myzoo.addAnimal(lion);
+        myzoo.addAnimal(tiger);
+        myzoo.addAnimal(cheetah);
+
+        } catch (ZooFullException e) {
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("\n");
 
@@ -42,12 +58,18 @@ public class Main {
         // Terrestrial defaultTerrestrial = new Terrestrial();
         // Dolphin defaultDolphin = new Dolphin();
         // Penguin defaultPenguin = new Penguin();
-
-        Terrestrial Terrestrial1 = new Terrestrial("Bears", "Panda", 10, true, 4);
-        Dolphin Dolphin1 = new Dolphin("Mammals", "Dolphin", 8, true, "Ocean", 15.5f);
-        Penguin Penguin1 = new Penguin("Birds", "Penguin", 3, false, "Antarctica", 30.0f);
-        Penguin Penguin2 = new Penguin("Birds", "Penguin2", 3, false, "Antarctica", 26.0f);
-
+        Terrestrial Terrestrial1 =null;
+        Dolphin Dolphin1 = null;
+        Penguin Penguin1 =null;
+        Penguin Penguin2 =  null;
+        try {
+         Terrestrial1 = new Terrestrial("Bears", "Panda", 10, true, 4);
+         Dolphin1 = new Dolphin("Mammals", "Dolphin", 8, true, "Ocean", 15.5f);
+         Penguin1 = new Penguin("Birds", "Penguin", 3, false, "Antarctica", 30.0f);
+         Penguin2 = new Penguin("Birds", "Penguin2", 3, false, "Antarctica", 26.0f);
+        } catch (InvalidAgeException e){
+            System.out.println(e.getMessage());
+        }
 
         System.out.println("Terrestrial avec constructeur paramétré: " + Terrestrial1);
         System.out.println("Dolphin avec constructeur paramétré: " + Dolphin1);
@@ -80,8 +102,13 @@ public class Main {
 
         System.out.println(Penguin1.equals(Penguin2));
 
-        Penguin Penguin3 = new Penguin("Birds", "Penguin2", 3, false, "Antarctica", 26.0f);
+        Penguin Penguin3 =null;
+        try {
+         Penguin3 = new Penguin("Birds", "Penguin2", 3, false, "Antarctica", 26.0f);
         System.out.println(Penguin3.equals(Penguin2));
+        } catch (InvalidAgeException e){
+            System.out.println("Error: " + e.getMessage());
+        }
 
     }
 

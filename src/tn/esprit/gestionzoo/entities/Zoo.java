@@ -1,12 +1,14 @@
 package tn.esprit.gestionzoo.entities;
 
 
+import tn.esprit.gestionzoo.exceptions.ZooFullException;
+
 public class Zoo {
 
     private Animal[] animals;
     private String name;
     private String city;
-    private final int nbrCages = 25;
+    private final int nbrCages = 3;
     private int nbrAnimals;
 
     public Aquatic[] aquaticAnimals;
@@ -20,28 +22,16 @@ public class Zoo {
         this.nbrAnimals = 0;
     }
 
-    public boolean addAnimal(Animal animal) {
+    public void addAnimal(Animal animal) throws ZooFullException {
 
-        if (isZooFull()) {
-            System.out.println("The zoo is full. Cannot add more animals.");
-            return false;
+        if (nbrAnimals >= nbrCages) {
+            throw new ZooFullException("Error: Cannot add animal: the zoo is full.");
         }
 
-        if (searchAnimal(animal)!=-1) {
-            System.out.println("This animal is already in the zoo.");
-            return false;
-        }
+        animals[nbrAnimals] = animal;
+        nbrAnimals++;
+        System.out.println("Animal added successfully. Total animals: " + nbrAnimals);
 
-        if (nbrAnimals < nbrCages) {
-            for (int i = 0; i < nbrCages; i++) {
-                if (animals[i] == null) {
-                    animals[i] = animal;
-                    nbrAnimals++;
-                    return true;
-                }
-            }
-        }
-        return false;
     }
 
     public void showAnimals() {
