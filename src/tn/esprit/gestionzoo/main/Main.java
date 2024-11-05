@@ -110,6 +110,11 @@ public class Main {
             System.out.println("Error: " + e.getMessage());
         }
 
+        System.out.println("\n");
+
+        Penguin3.eatMeat(Food.MEAT);
+        Terrestrial1.eatPlantAndMeat(Food.BOTH);
+
     }
 
 }
