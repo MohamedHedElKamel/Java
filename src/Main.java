@@ -30,7 +30,7 @@ public class Main{
         societe.displayEmploye();
 
         societe.supprimerEmploye(e3);
-        System.out.println("\nApres suppression de e3: ");
+        System.out.println("\nApres suppression de e3:  ");
         societe.displayEmploye();
     }
 }

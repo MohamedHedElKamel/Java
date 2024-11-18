@@ -26,7 +26,7 @@ public class SocieteArrayList implements IGestion<Employe>{
     public boolean rechercherEmploye(Employe employe) {
 
         for (Employe e : listeEmployes) {
-            if (e.equals(employe)) {
+            if ( e.equals(employe)) {
                 return true;
             }
         }

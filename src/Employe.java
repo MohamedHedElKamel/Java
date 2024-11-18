@@ -53,7 +53,7 @@ public class Employe implements Comparable<Employe>{
         this.grade = grade;
     }
 
-    public boolean equals(Employe employe){
+    public boolean equals( Employe employe){
         return this.id == employe.getId() && this.nom.equals(employe.nom);
     }
 
