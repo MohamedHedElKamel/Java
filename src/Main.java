@@ -1,3 +1,8 @@
+import Departement.DepartementHashSet;
+import Departement.Departement;
+
+import java.util.TreeSet;
+
 public class Main{
     public static void main(String[] args) {
         SocieteArrayList societe = new SocieteArrayList();
@@ -32,5 +37,39 @@ public class Main{
         societe.supprimerEmploye(e3);
         System.out.println("\nApres suppression de e3:  ");
         societe.displayEmploye();
+
+        DepartementHashSet gestionDepartements = new DepartementHashSet();
+
+
+
+        Departement d1 = new Departement(1, "Informatique", 25);
+        Departement d2 = new Departement(2, "Ressources Humaines", 15);
+        Departement d3 = new Departement(3, "Marketing", 20);
+        Departement d4 = new Departement(4, "Recherche et developpement ", 30);
+
+
+        gestionDepartements.ajouterDepartement(d1);
+        gestionDepartements.ajouterDepartement(d2);
+        gestionDepartements.ajouterDepartement(d3);
+        gestionDepartements.ajouterDepartement(d4);
+
+        System.out.println("\nListe des departements:");
+        gestionDepartements.displayDepartement();
+
+        System.out.println("\nRechercher departement par nom:");
+        gestionDepartements.rechercherDepartement("Informatique");
+
+        System.out.println("\nSupprimer departement");
+        gestionDepartements.supprimerDepartement(d4);
+
+        System.out.println("\nListe des departements triee:");
+        TreeSet<Departement> gestionDepartementstriee =gestionDepartements.trierDepartementById();
+        for (Departement d : gestionDepartementstriee) {
+            System.out.println(d);
+        }
+
+
+
+
     }
 }
