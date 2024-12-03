@@ -1,6 +1,7 @@
 import Departement.DepartementHashSet;
 import Departement.Departement;
 
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 public class Main{
@@ -64,10 +65,41 @@ public class Main{
 
         System.out.println("\nListe des departements triee:");
         TreeSet<Departement> gestionDepartementstriee =gestionDepartements.trierDepartementById();
-        for (Departement d : gestionDepartementstriee) {
-            System.out.println(d);
-        }
 
+        System.out.println(gestionDepartementstriee);
+
+        System.out.println("  \n  HashMap \n   ");
+
+        AffectationHashMap affectation = new AffectationHashMap();
+
+        affectation.ajouterEmployeDepartement(e1,d1);
+        affectation.ajouterEmployeDepartement(e3,d3);
+        affectation.ajouterEmployeDepartement(e2, d2);
+        affectation.ajouterEmployeDepartement(e2, d2);
+        affectation.ajouterEmployeDepartement(e4, d4);
+
+        System.out.println("  \n  List Employes Et Departements \n   ");
+        affectation.afficherEmployesEtDepartements();
+
+        System.out.println("  \n  Employes e1 supprime \n   ");
+        affectation.supprimerEmploye(e1);
+
+        System.out.println("  \n  Employes e2 et Departements d2 supprime\n   ");
+        affectation.supprimerEmployeEtDepartement(e2,d2);
+
+        affectation.afficherEmployes();
+
+        affectation.afficherDepartements();
+
+        System.out.println("rechercher Departement d1");
+        System.out.println(affectation.rechercherDepartement(d1));
+
+        System.out.println("rechercher Employe e1");
+        System.out.println(affectation.rechercherEmploye(e3));
+
+        TreeMap<Employe, Departement> sortedMap = affectation.trierMap();
+        sortedMap.forEach((employe, departement) ->
+                System.out.println(employe + " -> " + departement));
 
 
 
